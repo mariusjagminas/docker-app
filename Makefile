@@ -14,6 +14,7 @@ update-container:
 	docker container run --name app -p 8000:3000 --rm -d  asmarenas/docker-app:v0.1.0 
 
 remote-context:
+	- docker context create ssh-box --docker "host=ssh://root@209.246.143.43"
 	docker context use ssh-box
 
 deploy: default-context build upload remote-context update-container default-context
@@ -22,7 +23,4 @@ deploy: default-context build upload remote-context update-container default-con
 # Log into Docker HUB
 #
 # ssh login should be passwordless
-# https://linuxize.com/post/how-to-setup-passwordless-ssh-login
-#
-# Create ssh-box context if it is not exists
-# docker context create ssh-box --docker "host=ssh://root@209.246.143.43"
+# https://linuxize.com/post/how-to-setup-passwordless-ssh-login#
