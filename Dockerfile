@@ -6,6 +6,8 @@ COPY ["package.json", "package-lock.json", "./"]
 
 RUN npm install --production
 
-COPY dist .
- 
-CMD [ "node","main.js" ]
+COPY dist dist
+
+COPY client client
+
+CMD [ "node","dist/main.js" ]
