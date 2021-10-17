@@ -2,12 +2,12 @@ FROM node:12.18.1
 
 WORKDIR /app
 
-COPY ["package.json", "package-lock.json", "./"]
+COPY ["server/package.json", "server/package-lock.json", "./"]
 
 RUN npm install --production
 
-COPY dist dist
+COPY server/dist dist
 
-COPY client client
+COPY client/build client
 
 CMD [ "node","dist/main.js" ]

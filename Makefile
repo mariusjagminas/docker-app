@@ -2,7 +2,7 @@ default-context:
 	docker context use default
 
 build:	
-	npm run build
+	cd server && npm run build && cd ../client && yarn build 
 	docker image build --tag asmarenas/docker-app:v0.1.0 .
 
 upload:
