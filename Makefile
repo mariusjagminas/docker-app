@@ -2,7 +2,7 @@ default-context:
 	docker context use default
 
 build:	
-	npm run build
+	cd server && npm run build && cd ../client && yarn build 
 	docker image build --tag asmarenas/docker-app:v0.1.0 .
 
 upload:
@@ -11,7 +11,7 @@ upload:
 update-container: 		
 	docker container stop app
 	docker pull asmarenas/docker-app:v0.1.0
-	docker container run --name app -p 8000:3000 --rm -d  asmarenas/docker-app:v0.1.0 
+	docker container run --name app -p 80:3000 --rm -d  asmarenas/docker-app:v0.1.0 
 
 remote-context:
 	- docker context create ssh-box --docker "host=ssh://root@209.246.143.43"
