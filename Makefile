@@ -17,7 +17,14 @@ remote-context:
 	- docker context create ssh-box --docker "host=ssh://root@209.246.143.43"
 	docker context use ssh-box
 
+
+run-container-localy:
+	- docker container stop app
+	docker container run --name app -p 3000:3000 --rm -d  asmarenas/docker-app:v0.1.0 
+
 deploy: default-context build upload remote-context update-container default-context
+
+local-deploy: default-context build run-container-localy
 
 
 # Log into Docker HUB
